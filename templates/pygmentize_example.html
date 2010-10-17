@@ -1,0 +1,33 @@
+{% load pygmentize_tags %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/pygmentize/css/pygments.css" rel="stylesheet" type="text/css"/>
+
+  </head>
+  <body>
+    <h2>django-pygmentize</h2>
+
+
+    {% pygmentize 'python' %}
+""" this text is pygmentized in the template with templatetag"""
+def add_pygment(matchobj):
+    #string = matchobj.group(0)
+    lang = matchobj.group(2)
+    text = matchobj.group(4)
+    #print text, lang
+    try:
+        lexer = get_lexer_by_name(lang, encoding='UTF-8')
+    except:
+        lexer = HtmlLexer()
+    return highlight(text, lexer, HtmlFormatter())
+
+    {% endpygmentize %}
+
+    {{some_text|safe}}
+
+  </body>
+</html>
