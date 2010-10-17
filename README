@@ -1,0 +1,27 @@
+django app to make use of python-pygments http://pygments.org/
+
+Can be used in templates as {% pygmentize 'html' %}html code here{%endpygmentize%}
+or in view:
+code = "this is my code {% pygmentize 'python' %}some python code{%endpygmentize%}"
+pygmentized_code = pygmentizer.pygmentize(code)
+
+which means you can pygmentize your blog posts or even user comments
+
+
+
+requires:
+* pygments (easy_install pygments)
+
+Installation:
+* copy pygmentize folder to your project root
+* add pygmentize to your INSTALLED_APPS
+    INSTALLED_APPS = (
+        ...
+        'pygmentize',
+        ...
+    )
+
+That's it.
+To change your pygment theme set PYGMENT_THEME variable in settings.py it's set to 'native' by default.
+PYGMENT_THEME = 'my_theme'
+
