@@ -13,21 +13,19 @@
 
 
     {% pygmentize 'python' %}
-""" this text is pygmentized in the template with templatetag"""
-def add_pygment(matchobj):
-    #string = matchobj.group(0)
-    lang = matchobj.group(2)
-    text = matchobj.group(4)
-    #print text, lang
-    try:
-        lexer = get_lexer_by_name(lang, encoding='UTF-8')
-    except:
-        lexer = HtmlLexer()
-    return highlight(text, lexer, HtmlFormatter())
-
+    """ this text is pygmentized in the template with templatetag"""
+    def func(arg):
+        pass
     {% endpygmentize %}
 
-    {{some_text|safe}}
+    {{pygmentized_text|safe}}
+
+    {{not_pygmentized_text}}
+
+    {{ not_pygmentized_text|pygmentize_all }}
+
+    {{ not_pygmentized_text|pygmentize:"django" }}
+    aaa
 
   </body>
 </html>

@@ -3,7 +3,7 @@ from pygments import highlight
 from pygments.lexers import *
 from pygments.formatters import HtmlFormatter
 from django.http import HttpResponse
-from pygments.lexers import get_all_lexers
+from pygments.lexers import HtmlLexer
 import settings
 
 def add_pygment(matchobj):
@@ -17,7 +17,7 @@ def add_pygment(matchobj):
         lexer = HtmlLexer()
     return highlight(text, lexer, HtmlFormatter())
 
-""" look for {& pygmentize 'language' &} tags """
+""" look for {% pygmentize 'language' %} tags """
 def pygmentize(text):
     #print "trying to pygmentize", text
     return re.sub(r'(?s)\{\%\ *pygmentize\ *(\'|\")([a-zA-Z0-9\+\-]*)(\'|\")\ *\%\}(.*?)\{\%\ *endpygmentize\ *\%\}', lambda x: add_pygment(x), text)
