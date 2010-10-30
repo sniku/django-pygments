@@ -1,16 +1,17 @@
-django app to make use of python-pygments http://pygments.org/
+Complete syntax highlighting (http://pygments.org/) solution for django.
 
 Can be used in templates as {% pygmentize 'html' %}html code here{%endpygmentize%}
+or {{ var|pygmentize:"python" }} # where var is a snippet of python code
+or {{ var|pygmentize_all }} # where var is a snippet of code with one or many {% pygmentize 'language' %} tags (useful for pygmentizing blog entries or user comments )
 or in view:
 code = "this is my code {% pygmentize 'python' %}some python code{%endpygmentize%}"
-pygmentized_code = pygmentizer.pygmentize(code)
+pygmentized_code = pygmentizer.pygmentize(code) # same as pygmentize_all filter but for view (useful for saving pygmentized content to db)
 
-which means you can pygmentize your blog posts or even user comments
-
-
+This app was developed mainly to enable syntax highlighting in blog posts and user comments,
+but can be used to highlight any type of content. 
 
 requires:
-* pygments (easy_install pygments)
+* pygments (easy_install pygments - if you have python setup-tools)
 
 Installation:
 * copy pygmentize folder to your project root
@@ -24,4 +25,13 @@ Installation:
 That's it.
 To change your pygment theme set PYGMENT_THEME variable in settings.py it's set to 'native' by default.
 PYGMENT_THEME = 'my_theme'
+
+If you are confused:
+* examples and live demo: http://suwala.eu/blog/2010/10/30/django-pygments/
+* check the examples provided with the app
+* mail me at pawel.suwala (a) fsfe.org 
+
+
+
+
 
